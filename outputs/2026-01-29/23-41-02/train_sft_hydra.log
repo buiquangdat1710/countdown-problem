@@ -1,0 +1,73 @@
+[2026-01-29 23:41:02,076][sft_training][INFO] - Configuration:
+dataset:
+  file_path: data/sft/train.csv
+  max_rows: 10000
+  seed: 42
+model:
+  model_id: Qwen/Qwen2.5-Math-1.5B
+  device_map: cuda
+  lora:
+    r: 32
+    lora_alpha: 64
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+    lora_dropout: 0.05
+    bias: none
+    task_type: CAUSAL_LM
+training:
+  learning_rate: 2.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  lr_scheduler_type: linear
+  optim: adamw_8bit
+  num_train_epochs: 1
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  bf16: true
+  remove_unused_columns: false
+  max_length: 4096
+  report_to: tensorboard
+  logging_steps: 1
+  save_strategy: steps
+  save_steps: 10
+output_dir: models/sft
+seed: 42
+
+[2026-01-29 23:41:02,076][sft_training][INFO] - Output dir: models/sft
+[2026-01-29 23:41:02,249][sft_training][INFO] - Train rows: 5000
+[2026-01-29 23:41:02,899][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:02,899][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:03,220][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:03,220][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:10,850][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:10,852][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/generation_config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:13,562][sft_training][INFO] - Model with LoRA ready
+[2026-01-29 23:41:13,878][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:13,878][huggingface_hub.utils._http][WARNING] - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-01-29 23:41:13,897][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:14,185][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:14,203][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:14,498][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+[2026-01-29 23:41:14,779][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-01-29 23:41:15,712][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B "HTTP/1.1 200 OK"
+[2026-01-29 23:41:16,089][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+[2026-01-29 23:41:16,370][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-01-29 23:41:17,174][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-01-29 23:41:17,439][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-01-29 23:41:17,712][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:17,738][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:18,010][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:18,029][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:18,303][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:18,317][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:18,587][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 23:41:18,608][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-01-29 23:41:18,877][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+[2026-01-29 23:41:19,138][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-01-29 23:41:20,074][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B "HTTP/1.1 200 OK"

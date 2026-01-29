@@ -1,0 +1,17 @@
+# Main configuration file for GRPO training
+defaults:
+  - dataset: default
+  - model: qwen2.5-3b
+  - training: default
+  - _self_
+
+# Output directory for model checkpoints and logs
+output_dir: models/grpo
+
+# Resume from checkpoint
+resume_from_checkpoint_sft: models/sft
+resume_from_checkpoint_grpo: models/grpo/checkpoint-1160
+save_before_training: true
+
+# Random seed for reproducibility
+seed: 42

@@ -1,0 +1,24 @@
+# Default training configuration for SFT
+
+# Learning parameters
+learning_rate: 2e-5
+weight_decay: 0.01
+warmup_ratio: 0.1
+lr_scheduler_type: linear
+optim: adamw_8bit
+
+# Training parameters
+num_train_epochs: 1
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+bf16: true
+remove_unused_columns: false
+
+# SFT-specific parameters
+max_length: 4096
+
+# Logging and saving
+report_to: tensorboard
+logging_steps: 1
+save_strategy: steps
+save_steps: 10

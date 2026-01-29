@@ -1,0 +1,51 @@
+[2026-01-29 22:59:22,808][sft_training][INFO] - Configuration:
+dataset:
+  file_path: data/sft/train.csv
+  max_rows: 10000
+  seed: 42
+model:
+  model_id: Qwen/Qwen2.5-Math-1.5B
+  device_map: cuda
+  lora:
+    r: 32
+    lora_alpha: 64
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+    lora_dropout: 0.05
+    bias: none
+    task_type: CAUSAL_LM
+training:
+  learning_rate: 2.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  lr_scheduler_type: linear
+  optim: adamw_8bit
+  num_train_epochs: 2
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  bf16: true
+  remove_unused_columns: false
+  max_length: 4096
+  report_to: tensorboard
+  logging_steps: 1
+  save_strategy: steps
+  save_steps: 10
+output_dir: models/sft
+seed: 42
+
+[2026-01-29 22:59:22,811][sft_training][INFO] - Output dir: models/sft
+[2026-01-29 22:59:23,049][sft_training][INFO] - Train rows: 5000
+[2026-01-29 22:59:23,682][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 22:59:23,945][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 22:59:24,260][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 22:59:24,615][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+[2026-01-29 22:59:24,929][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-01-29 22:59:24,960][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Math-1.5B/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2/config.json "HTTP/1.1 200 OK"
+[2026-01-29 22:59:25,245][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Math-1.5B/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+[2026-01-29 22:59:25,589][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Math-1.5B/xet-read-token/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2 "HTTP/1.1 200 OK"

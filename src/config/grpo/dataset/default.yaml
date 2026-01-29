@@ -1,0 +1,11 @@
+# Path to the training dataset CSV file
+file_path: data/grpo/train.csv
+
+# Split of the dataset
+split: train
+
+# Maximum number of training samples to use
+max_rows: 10000
+
+# Random seed for dataset shuffling
+seed: 42

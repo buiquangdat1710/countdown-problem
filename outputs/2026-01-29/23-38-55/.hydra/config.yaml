@@ -1,0 +1,39 @@
+dataset:
+  file_path: data/sft/train.csv
+  max_rows: 10000
+  seed: 42
+model:
+  model_id: Qwen/Qwen2.5-Math-1.5B
+  device_map: cuda
+  lora:
+    r: 32
+    lora_alpha: 64
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+    lora_dropout: 0.05
+    bias: none
+    task_type: CAUSAL_LM
+training:
+  learning_rate: 2.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  lr_scheduler_type: linear
+  optim: adamw_8bit
+  num_train_epochs: 1
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 8
+  bf16: true
+  remove_unused_columns: false
+  max_length: 4096
+  report_to: tensorboard
+  logging_steps: 1
+  save_strategy: steps
+  save_steps: 10
+output_dir: models/sft
+seed: 42

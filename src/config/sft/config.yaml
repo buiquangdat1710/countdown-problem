@@ -1,0 +1,12 @@
+# Main configuration file for SFT training
+defaults:
+  - dataset: default
+  - model: qwen2.5-3b
+  - training: default
+  - _self_
+
+# Output directory for model checkpoints and logs
+output_dir: models/sft
+
+# Random seed for reproducibility
+seed: 42
